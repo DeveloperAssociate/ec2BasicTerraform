@@ -21,8 +21,4 @@ jobs:
           terraform_version: 1.1.0
 
       - name: Apply infrastructure
-        env:
-          AWS_REGION: eu-central-1
-          AWS_ACCESS_KEY_ID: ${{ secrets[env.AWS_ACCESS_KEY] }}
-          AWS_SECRET_KEY: ${{ secrets[env.AWS_SECRET_KEY] }}      
-        run: terraform init && terraform apply -auto-approve
+        run: AWS_REGION=us-east-1 AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_KEY }} terraform init && terraform apply -auto-approve
